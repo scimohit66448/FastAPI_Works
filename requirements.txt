@@ -1,0 +1,8 @@
+faker
+fastapi
+pydantic
+uvicorn[standard]
+databases
+sqlalchemy
+asyncpg
+psycopg2-binary
