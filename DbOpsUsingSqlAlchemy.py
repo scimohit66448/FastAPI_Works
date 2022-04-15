@@ -6,9 +6,9 @@ conn = db_engine.connect()
 metadata = sql.MetaData()
 user_table = None
 try:
-    user_table = sql.Table('user', metadata, autoload=True, autoload_with=db_engine)
+    user_table = sql.Table('user_nmg', metadata, autoload=True, autoload_with=db_engine)
 except:
-    user_table = sql.Table('user', metadata,
+    user_table = sql.Table('user_nmg', metadata,
 
                            sql.Column('firstname', sql.String(100), nullable=False),
                            sql.Column('lastname', sql.String(100), nullable=False),
@@ -36,7 +36,7 @@ def search_user_in_db(firstname=None, lastname=None, age=None):
     print("Searching in DB.......")
 
     # query = sql.select([user_table.columns.firstname, user_table.columns.lastname, user_table.columns.age])'
-    query = 'SELECT * from public.user'
+    query = 'SELECT * from public.user_nmg'
     if firstname:
         firstname = firstname.lower()
         if "Where" not in query:
