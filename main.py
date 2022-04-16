@@ -44,7 +44,7 @@ class User(BaseModel):
         if age < 0:
             raise ValueError("Invalid age : age cannot be negative")
         if age > 999:
-            raise ValueError("Please enter the age less than 3 digits")
+            raise ValueError("Please enter the age not more than 3 digits")
         return age
 
 
