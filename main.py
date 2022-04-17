@@ -53,7 +53,7 @@ method:  POST"""
 
 
 @my_rest_app.post("/create_user")
-async def create_user(user: User):
+def create_user(user: User):
     response = None
     response_status = None
     user_created = []
@@ -81,7 +81,7 @@ Parameter : number (number of records to be generated)
 
 
 @my_rest_app.post("/generate_user/{number}")
-async def generate_user(number: int):
+def generate_user(number: int):
     response = " "
     users_created = []
     user_list = []
@@ -111,7 +111,7 @@ async def generate_user(number: int):
 
 
 @my_rest_app.get('/get_user')
-async def search_user(firstname: Optional[StrictStr] = None, lastname: Optional[StrictStr] = None,
+def search_user(firstname: Optional[StrictStr] = None, lastname: Optional[StrictStr] = None,
                       age: Optional[int] = None):
     param = {"firstname": firstname, "lastname": lastname, "age": age}
     response = search_user_in_db(firstname=firstname, lastname=lastname, age=age)
