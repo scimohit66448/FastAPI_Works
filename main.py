@@ -44,7 +44,7 @@ class User(BaseModel):
         if age < 0:
             raise ValueError("Invalid age : age cannot be negative")
         if age > 999:
-            raise ValueError("Please enter the age not more than 3 digits")
+            raise ValueError("Please enter the age not more  than 3 digits")
         return age
 
 
@@ -121,8 +121,13 @@ async def search_user(firstname: Optional[StrictStr] = None, lastname: Optional[
 
 @my_rest_app.get('/list_user_records/{number}')
 def generate_user_record(number: int):
-    response = search_user_in_db()
-    response_status = status.HTTP_200_OK
-    if number < len(response):
-        response = response[:number]
-    return JSONResponse(status_code=response_status, content={"data": response, 'message': f"produced {number} records"})
+    response_status = None
+    response = " "
+    try:
+        response = search_user_in_db(count=number)
+        response_status = status.HTTP_200_OK
+    except Exception as exp:
+        response_status = status.HTTP_500_INTERNAL_SERVER_ERROR
+        response = "Something went Wrong : "+str(exp)
+    finally:
+        return JSONResponse(status_code=response_status, content={"data": response, 'message': f"produced {number} records"})

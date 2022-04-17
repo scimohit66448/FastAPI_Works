@@ -31,7 +31,7 @@ def insert_user(user_list):
         return users_created
 
 
-def search_user_in_db(firstname=None, lastname=None, age=None):
+def search_user_in_db(firstname=None, lastname=None, age=None, count=None):
     data = []
     print("Searching in DB.......")
 
@@ -59,6 +59,9 @@ def search_user_in_db(firstname=None, lastname=None, age=None):
             query = query + " AND "
         query = query + f"age ={age}"
     print(query)
+    if count:
+
+        query = query + f" LIMIT {count}"
     result = conn.execute(query).fetchall()
     print(result)
     try:
